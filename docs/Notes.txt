@@ -1,0 +1,81 @@
+@SpringBootApplication  --> APPLICATION
+
+*********************************************
+STarting point Controller
+------------------------
+    @Autowired -- Variable , find the implemented class, call its constructor, pool it and supply for multiple request.
+
+    Class:
+    @RestController
+    @CrossOrigin(origins = "http://localhost:4200")
+
+
+    @RequestMapping(value ="/", method = RequestMethod.GET)  // Expose
+    @ResponseBody //COntent return (not required to return status)
+
+
+    Service is autowired:
+    ---------------------
+--********************************************************
+
+Service:  => @Service
+    @Autowired
+    private MemberRepository memberRepository;
+--------------
+1 INterface + IMplementation (for service)
+
+Annotate only the Implementation - usually
+--*************************************************************
+Repository - Interface Only (If using Spring Data JPA, only interface required)  ==> Replacement for DAO (provided by spring JPA)
+    public interface MemberRepository extends JpaRepository<Member, Integer>, JpaSpecificationExecutor<Member>
+
+No Implementation , required - Implementation will be provided by SpringBoot.
+
+It will generate findAll , update, delete etc....
+
+Generics of repo - refers the entity.
+
+resources-> application.yml will define the datasource to pick
+    yml driver should be in pom.xml in the dependency
+---****************************************************************************
+Entity => primary link between table and repo - it will have the table name.
+Lombak - will autogenerate getters and setters for Entity using runtime - we will only need to annotate
+
+Generate Entity using - FIle -> new -> Generate new entity
+
+---------------------------------------------------------------
+@RequestParam
+
+@RequestBody
+
+@Service - @Query
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#reference
+
+
+public interface MemberRepository extends JpaRepository<Member, Integer>, JpaSpecificationExecutor<Member> {
+
+    @Query("select m from Member m where first_name like %?1")
+     List<com.iskcon.au.dims.domain.Member> findMembersByFirstName(String value);
+
+    @Query("select m from Member m where last_name like %?1")
+     List<com.iskcon.au.dims.domain.Member> findMembersByLastName(String value);
+
+}
+
+----------------------------------
+ AUTO_INCREMENT to be added to DML
+
+ ->AUto generate ENT
+--------------------------
+Payload remove ID and check
+-----------------------------------------------------
+
+https://www.baeldung.com/spring-data-jpa-pagination-sorting
+
+-----------------------------------------------------
+API call from Service
+-----------------------------------------------------
+Static MAP in service TABLE - Lookups
+-----------------------------------------------------
+
+

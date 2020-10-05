@@ -1,0 +1,10 @@
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dims?serverTimezone=Australia/Sydney
+    username: ram
+    password: sriram
+    test-on-borrow: true
+    validation-query: SELECT 1
+
