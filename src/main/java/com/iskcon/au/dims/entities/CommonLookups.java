@@ -30,13 +30,13 @@ public class CommonLookups implements Serializable {
     @Column(name = "created_by")
     private Integer createdBy;
 
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
     @Column(name = "last_updated_by")
     private Integer lastUpdatedBy;
 
-    @Column(name = "last_update_date", nullable = false)
+    @Column(name = "last_update_date")
     private LocalDateTime lastUpdateDate;
 
 }

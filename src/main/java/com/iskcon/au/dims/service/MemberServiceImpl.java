@@ -6,7 +6,10 @@ import com.iskcon.au.dims.domain.Member;
 import com.iskcon.au.dims.repositories.MemberRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootExceptionReporter;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,16 +26,12 @@ public class MemberServiceImpl implements MemberService {
     @Override
 	public List<com.iskcon.au.dims.domain.Member> getMembers(){
         List<com.iskcon.au.dims.domain.Member> domMembers = new ArrayList<>();
-
-        List<com.iskcon.au.dims.entities.Member> entMembers =  memberRepository.findAll(Sort.by("memberId").descending());
+        List<com.iskcon.au.dims.entities.Member> entMembers =  memberRepository.findAll(Sort.by("memberId").ascending());
 
         entMembers.forEach(member -> {
                 domMembers.add(mapper.map(member, com.iskcon.au.dims.domain.Member.class ));
         });
-
         return domMembers;
-
-
     }
 
     @Override
@@ -41,20 +40,23 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
-    public List<com.iskcon.au.dims.domain.Member> findMembersByFirstName(String value) {
+    public List<com.iskcon.au.dims.domain.Member> findMembersByCriteria(String criteria, String value) {
 
         List<com.iskcon.au.dims.domain.Member> domMembers = new ArrayList<>();
+        List<com.iskcon.au.dims.entities.Member> entMembers = new ArrayList<>();
 
 
-        List<com.iskcon.au.dims.entities.Member> entMembers = memberRepository.findMembersByFirstName(value, Sort.by("memberId").descending());
+        if("FIRST_NAME".equals(criteria)) {
+            entMembers = memberRepository.findMembersByFirstName(value, Sort.by("memberId").descending());
+            entMembers.forEach(member -> {
+                domMembers.add(mapper.map(member, com.iskcon.au.dims.domain.Member.class ));
+            });
 
-        entMembers.forEach(member -> {
-            domMembers.add(mapper.map(member, com.iskcon.au.dims.domain.Member.class ));
-        });
-
-        return domMembers;
+            return domMembers;
+        } else {
+            throw new RuntimeException("Not a valid find criteria");
+        }
     }
-
 
 
 }

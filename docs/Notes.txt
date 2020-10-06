@@ -1,3 +1,7 @@
+CREATE USER 'dims'@'localhost' IDENTIFIED BY 'dims';
+GRANT ALL PRIVILEGES ON * . * TO 'dims'@'localhost';
+
+
 @SpringBootApplication  --> APPLICATION
 
 *********************************************
@@ -44,6 +48,8 @@ Lombak - will autogenerate getters and setters for Entity using runtime - we wil
 Generate Entity using - FIle -> new -> Generate new entity
 
 ---------------------------------------------------------------
+Steps to add CUSTOM Query METHODS in REPO interface
+
 @RequestParam
 
 @RequestBody
@@ -65,17 +71,33 @@ public interface MemberRepository extends JpaRepository<Member, Integer>, JpaSpe
 ----------------------------------
  AUTO_INCREMENT to be added to DML
 
- ->AUto generate ENT
---------------------------
-Payload remove ID and check
+  -->AUto generate ENT
+ -----DONE
+-------------------------- 
+Payload remove ID and check  -->DONE
 -----------------------------------------------------
-
 https://www.baeldung.com/spring-data-jpa-pagination-sorting
-
+  --> JPA and Pagination
 -----------------------------------------------------
+IN the concept of micro-service, we should Honor contracts as far as possible.
+For example, if lookup value is required in Member, we should call a lookup Microservice (Web-URL call).
+
 API call from Service
 -----------------------------------------------------
 Static MAP in service TABLE - Lookups
------------------------------------------------------
+  We can maintain Lookups as a static Map in the ServiceImpl Class
+---------------------------------------------------------------------------
+
+How is a an Error propogated from ServiceImpl class to Controller
+----------------------------------------------------------------------
 
 
+custom exception - new business
+
+spring boot web exception - 
+-------------------------------------------------
+Wrapper
+
+--------------------------------------------------
+webservice from - service
+--------------------------------------------------

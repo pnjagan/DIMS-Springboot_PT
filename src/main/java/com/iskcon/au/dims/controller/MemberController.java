@@ -30,17 +30,11 @@ public class MemberController {
     @RequestMapping("/findMembers")
     public ResponseEntity findMembers(@RequestParam String criteria , @RequestParam String value) {
         //Exception handling
-
-        if("FIRST_NAME".equals(criteria)) {
-            return ResponseEntity.status(HttpStatus.OK).body(memberService.findMembersByFirstName(value));
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{message:\"Criteria not Valid\"}");
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(memberService.findMembersByCriteria(criteria,value));
     }
 
     @PostMapping("/saveMember")
     public ResponseEntity  saveMember(@RequestBody Member member) {
-        //System.out.println("member from UI in REST Controller ==> " + member);
         memberService.saveMember(member);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }

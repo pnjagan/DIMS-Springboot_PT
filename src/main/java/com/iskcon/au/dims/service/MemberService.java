@@ -14,7 +14,7 @@ public interface MemberService {
 
     public void saveMember(Member member);
 
-    public List<com.iskcon.au.dims.domain.Member> findMembersByFirstName(String value);
+    public List<com.iskcon.au.dims.domain.Member> findMembersByCriteria(String criteria, String value);
 
 
 
