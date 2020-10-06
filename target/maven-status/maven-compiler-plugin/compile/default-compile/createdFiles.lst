@@ -1,0 +1,13 @@
+com/iskcon/au/dims/entities/Address.class
+com/iskcon/au/dims/repositories/ProgramMemberAssocRepository.class
+com/iskcon/au/dims/repositories/CommonLookupsRepository.class
+com/iskcon/au/dims/repositories/ProgramRepository.class
+com/iskcon/au/dims/entities/Member.class
+com/iskcon/au/dims/controller/MemberController.class
+com/iskcon/au/dims/entities/Program.class
+com/iskcon/au/dims/service/MemberService.class
+com/iskcon/au/dims/entities/ProgramMemberAssoc.class
+com/iskcon/au/dims/repositories/MemberRepository.class
+com/iskcon/au/dims/repositories/AddressRepository.class
+com/iskcon/au/dims/domain/Member.class
+com/iskcon/au/dims/entities/CommonLookups.class
